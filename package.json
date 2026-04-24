@@ -43,22 +43,16 @@
     "test:ts:back": "tsc -p server/tsconfig.json --noEmit",
     "test": "npm run test:ts:front && npm run test:ts:back"
   },
+  "dependencies": {
+    "@strapi/design-system": "2.0.1",
+    "@strapi/icons": "2.0.1"
+  },
   "peerDependencies": {
-    "@strapi/design-system": "^2.0.0",
-    "@strapi/icons": "^2.0.0",
     "@strapi/strapi": "^5.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@strapi/design-system": {
-      "optional": true
-    },
-    "@strapi/icons": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@strapi/admin": "5.33.2",
