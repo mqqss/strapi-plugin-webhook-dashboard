@@ -52,6 +52,14 @@
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0"
   },
+  "peerDependenciesMeta": {
+    "@strapi/design-system": {
+      "optional": true
+    },
+    "@strapi/icons": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@strapi/admin": "5.33.2",
     "@strapi/design-system": "^2.0.1",
