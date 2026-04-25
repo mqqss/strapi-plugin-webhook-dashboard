@@ -2,7 +2,7 @@ import type { StrapiApp } from '@strapi/admin/strapi-admin';
 import { Lightning } from '@strapi/icons';
 import { PLUGIN_ID } from './pluginId';
 
-const PLUGIN_NAME = 'Webhook 小组件';
+const PLUGIN_NAME = 'Webhook Dashboard';
 
 export default {
   register(app: StrapiApp) {
@@ -21,7 +21,7 @@ export default {
         const component = await import('./components/WebhookWidget');
         return component.default;
       },
-      id: 'webhook-widget',
+      id: 'webhook-dashboard',
       pluginId: PLUGIN_ID,
     });
   },

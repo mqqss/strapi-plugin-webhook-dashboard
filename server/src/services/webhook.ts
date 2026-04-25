@@ -1,5 +1,5 @@
 import type { Core } from '@strapi/strapi';
-import { LEGACY_PLUGIN_ID, PLUGIN_ID } from '../pluginId';
+import { PLUGIN_ID } from '../pluginId';
 
 type WebhookButton = {
   id: string;
@@ -72,26 +72,12 @@ const validateSettings = (settings: WebhookSettings) => {
 
 const webhookService = ({ strapi }: { strapi: Core.Strapi }) => {
   const store = strapi.store({ type: 'plugin', name: PLUGIN_ID });
-  const legacyStore = strapi.store({ type: 'plugin', name: LEGACY_PLUGIN_ID });
 
   const getSettings = async (): Promise<WebhookSettings> => {
     const stored = (await store.get({ key: SETTINGS_KEY })) as WebhookSettings | undefined;
     const normalized = normalizeSettings(stored);
 
     if (!normalized.buttons.length) {
-      const legacyStored = (await legacyStore.get({ key: SETTINGS_KEY })) as WebhookSettings | undefined;
-      const legacyNormalized = normalizeSettings(legacyStored);
-
-      if (legacyNormalized.buttons.length) {
-        await store.set({ key: SETTINGS_KEY, value: legacyNormalized });
-
-        return {
-          buttons: legacyNormalized.buttons.filter((button) =>
-            Boolean(button.id && button.title && button.url && isHttpUrl(button.url))
-          ),
-        };
-      }
-
       return DEFAULT_SETTINGS;
     }
 

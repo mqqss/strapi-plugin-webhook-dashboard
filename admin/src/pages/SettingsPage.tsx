@@ -119,7 +119,7 @@ const SettingsPage = () => {
         <Flex justifyContent="space-between" alignItems="center">
           <Flex direction="column" alignItems="flex-start" gap={1}>
             <Typography variant="alpha" fontWeight="bold">
-              Webhook 小组件
+              Webhook Dashboard
             </Typography>
             <Typography variant="epsilon" textColor="neutral600">
               配置首页 Widget 的按钮标题与 webhook 地址（仅支持 POST）

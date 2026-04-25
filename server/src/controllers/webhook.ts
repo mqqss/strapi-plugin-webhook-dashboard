@@ -28,7 +28,7 @@ const webhookController = ({ strapi }: { strapi: Core.Strapi }) => ({
       const data = await strapi.plugin(PLUGIN_ID).service('webhook').updateSettings(ctx.request.body);
       ctx.send(data);
     } catch (error) {
-      strapi.log.error('[webhook-widget] update settings failed', error);
+      strapi.log.error('[webhook-dashboard] update settings failed', error);
       ctx.badRequest(getErrorMessage(error, '保存失败'));
     }
   },
@@ -44,7 +44,7 @@ const webhookController = ({ strapi }: { strapi: Core.Strapi }) => ({
       const data = await strapi.plugin(PLUGIN_ID).service('webhook').trigger(id);
       ctx.send(data);
     } catch (error) {
-      strapi.log.error('[webhook-widget] trigger failed', error);
+      strapi.log.error('[webhook-dashboard] trigger failed', error);
       ctx.badRequest(getErrorMessage(error, '触发失败'));
     }
   },

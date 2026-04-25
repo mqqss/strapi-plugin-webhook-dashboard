@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "strapi-plugin-webhook-widget",
+  "name": "strapi-plugin-webhook-dashboard",
   "version": "1.0.0",
-  "description": "Strapi admin homepage widget for triggering configurable webhooks.",
+  "description": "Strapi admin dashboard widget for triggering configurable webhooks.",
   "license": "MIT",
   "author": "Woqu Technology",
   "type": "commonjs",
@@ -10,7 +10,7 @@
     "strapi",
     "strapi-plugin",
     "strapi-v5",
-    "admin-widget",
+    "admin-dashboard",
     "webhook"
   ],
   "exports": {
@@ -80,8 +80,8 @@
   },
   "strapi": {
     "kind": "plugin",
-    "name": "webhook-widget",
-    "displayName": "Webhook 小组件",
-    "description": "在管理后台主页触发 webhook"
+    "name": "webhook-dashboard",
+    "displayName": "Webhook Dashboard",
+    "description": "在管理后台首页触发 webhook"
   }
 }

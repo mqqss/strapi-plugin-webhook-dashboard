@@ -1,34 +1,31 @@
-# strapi-plugin-webhook-widget
+# strapi-plugin-webhook-dashboard
 
-Strapi 5 插件，用于在管理后台首页添加一个可配置的 Webhook widget。
+Strapi 5 plugin that adds a configurable webhook dashboard widget to the admin homepage.
 
 ## Features
 
-- 在 Strapi 管理后台首页注册 widget
-- 支持在 Settings 页面配置多个按钮
-- 每个按钮通过服务端发送 `POST` 请求触发 webhook
-- 配置保存在 Strapi plugin store 中
-- 从早期本地插件 ID `strapi-plugin-webhook-widget` 自动迁移旧配置
+- Registers a Strapi admin homepage widget
+- Adds a Settings page for configuring multiple webhook buttons
+- Triggers webhooks from the Strapi server with `POST`
+- Stores button configuration in the Strapi plugin store
 
 ## Installation
 
 ```bash
-npm install strapi-plugin-webhook-widget
+npm install strapi-plugin-webhook-dashboard
 ```
 
-Strapi 5 会从 `node_modules` 自动发现插件，通常不需要在 `config/plugins.ts` 里手动配置。
-
-如果你希望显式启用：
+Strapi 5 usually discovers installed plugins automatically. To enable it explicitly:
 
 ```ts
 export default () => ({
-  'webhook-widget': {
+  'webhook-dashboard': {
     enabled: true,
   },
 });
 ```
 
-安装后重新构建后台：
+Rebuild the admin panel after installation:
 
 ```bash
 npm run build
@@ -37,39 +34,26 @@ npm run develop
 
 ## Usage
 
-1. 打开 Strapi 后台 Settings。
-2. 进入“Webhook 小组件”。
-3. 添加按钮标题和 webhook URL。
-4. 保存后，在后台首页 widget 中点击按钮触发对应 webhook。
+1. Open Strapi admin Settings.
+2. Go to "Webhook Dashboard".
+3. Add a button title and webhook URL.
+4. Save, then trigger the webhook from the admin homepage widget.
 
-Webhook 只支持 `http` 或 `https` URL，并使用服务端 `POST` 请求触发。
+Webhook URLs must use `http` or `https`.
 
 ## Development
 
 ```bash
 npm install
+npm run test
 npm run build
 npm run verify
-```
-
-本地联调可以使用 Strapi Plugin SDK 的 `watch:link`：
-
-```bash
-npm run watch:link
 ```
 
 ## Package
 
 ```bash
 npm pack
-```
-
-发布前建议先运行：
-
-```bash
-npm run test
-npm run build
-npm run verify
 ```
 
 ## License
