@@ -14,7 +14,7 @@ const usage = [
   '  npm run release:publish',
   '',
   'release:check runs the release verification without pushing or publishing.',
-  'release:publish verifies, creates the version tag, pushes main and tag, then publishes to npm.',
+  'release:publish verifies, creates the version tag, and pushes main and tag to trigger GitHub Actions publishing.',
 ].join('\n');
 
 if (!['--check', '--publish'].includes(mode)) {
@@ -173,6 +173,5 @@ if (!isPublish) {
 ensureTag();
 run('git', ['push', 'origin', 'main']);
 run('git', ['push', 'origin', tagName]);
-run('npm', ['publish', '--access', 'public']);
 
-console.log(`\nReleased ${packageName}@${version}`);
+console.log(`\nPushed ${tagName}. GitHub Actions will publish ${packageName}@${version} to npm via Trusted Publishing.`);
