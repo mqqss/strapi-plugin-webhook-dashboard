@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "strapi-plugin-webhook-dashboard",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Strapi admin dashboard widget for triggering configurable webhooks.",
   "license": "MIT",
   "author": "Woqu Technology",

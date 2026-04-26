@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "outDir": "./dist"
   },
   "include": ["src/**/*"],
