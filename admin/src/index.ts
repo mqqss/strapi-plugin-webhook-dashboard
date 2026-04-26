@@ -1,6 +1,7 @@
 import type { StrapiApp } from '@strapi/admin/strapi-admin';
 import { Lightning } from '@strapi/icons';
 import { PLUGIN_ID } from './pluginId';
+import { PERMISSIONS } from './permissions';
 
 const PLUGIN_NAME = 'Webhook Dashboard';
 
@@ -9,6 +10,18 @@ export default {
     app.registerPlugin({
       id: PLUGIN_ID,
       name: PLUGIN_NAME,
+    });
+
+    app.addMenuLink({
+      to: `plugins/${PLUGIN_ID}`,
+      icon: Lightning,
+      intlLabel: {
+        id: `${PLUGIN_ID}.plugin.name`,
+        defaultMessage: PLUGIN_NAME,
+      },
+      Component: () => import('./pages/SettingsPage'),
+      permissions: PERMISSIONS.read,
+      position: 8,
     });
 
     app.widgets.register({
@@ -23,19 +36,9 @@ export default {
       },
       id: 'webhook-dashboard',
       pluginId: PLUGIN_ID,
+      permissions: PERMISSIONS.read,
     });
   },
 
-  bootstrap(app: StrapiApp) {
-    app.addSettingsLink('global', {
-      id: `${PLUGIN_ID}.settings`,
-      intlLabel: {
-        id: `${PLUGIN_ID}.settings.label`,
-        defaultMessage: PLUGIN_NAME,
-      },
-      to: `/settings/${PLUGIN_ID}`,
-      Component: async () => import('./pages/SettingsPage'),
-      permissions: [],
-    });
-  },
+  bootstrap() {},
 };

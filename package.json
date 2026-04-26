@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "strapi-plugin-webhook-dashboard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Strapi admin dashboard widget for triggering configurable webhooks.",
   "license": "MIT",
   "author": "Woqu Technology",
@@ -43,11 +43,9 @@
     "test:ts:back": "tsc -p server/tsconfig.json --noEmit",
     "test": "npm run test:ts:front && npm run test:ts:back"
   },
-  "dependencies": {
-    "@strapi/design-system": "2.0.1",
-    "@strapi/icons": "2.0.1"
-  },
   "peerDependencies": {
+    "@strapi/design-system": "^2.0.0",
+    "@strapi/icons": "^2.0.0",
     "@strapi/strapi": "^5.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -55,24 +53,24 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
-    "@strapi/admin": "5.33.2",
-    "@strapi/design-system": "^2.0.1",
-    "@strapi/icons": "^2.0.1",
+    "@strapi/admin": "5.43.0",
+    "@strapi/design-system": "2.2.0",
+    "@strapi/icons": "2.2.0",
     "@strapi/sdk-plugin": "^6.1.0",
-    "@strapi/strapi": "5.33.2",
-    "@strapi/typescript-utils": "5.33.2",
+    "@strapi/strapi": "5.43.0",
+    "@strapi/typescript-utils": "5.43.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0",
+    "react-router-dom": "^6.30.3",
     "styled-components": "^6.1.13",
     "typescript": "^5.6.3"
   },
   "engines": {
-    "node": ">=18.0.0 <=24.x.x",
+    "node": ">=20.0.0 <=24.x.x",
     "npm": ">=8.0.0"
   },
   "publishConfig": {
