@@ -24,23 +24,34 @@ if (!['--check', '--publish'].includes(mode)) {
 
 const isPublish = mode === '--publish';
 
+const quoteForShell = (arg) => {
+  if (process.platform !== 'win32') return arg;
+  if (arg === '' || /[\s"^&|<>()%!]/.test(arg)) {
+    return `"${String(arg).replace(/"/g, '\\"')}"`;
+  }
+  return arg;
+};
+
 const run = (command, args, options = {}) => {
   console.log(`\n> ${command} ${args.join(' ')}`);
-  execFileSync(command, args, {
+  const useShell = process.platform === 'win32';
+  execFileSync(command, useShell ? args.map(quoteForShell) : args, {
     cwd: root,
     stdio: 'inherit',
-    shell: process.platform === 'win32',
+    shell: useShell,
     ...options,
   });
 };
 
-const capture = (command, args) =>
-  execFileSync(command, args, {
+const capture = (command, args) => {
+  const useShell = process.platform === 'win32';
+  return execFileSync(command, useShell ? args.map(quoteForShell) : args, {
     cwd: root,
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
-    shell: process.platform === 'win32',
+    shell: useShell,
   }).trim();
+};
 
 const fail = (message) => {
   console.error(`\nRelease aborted: ${message}`);
@@ -71,10 +82,12 @@ const assertMainBranch = () => {
 const assertRemoteIsAncestor = () => {
   run('git', ['fetch', 'origin', 'main', '--tags']);
   try {
-    execFileSync('git', ['merge-base', '--is-ancestor', 'origin/main', 'HEAD'], {
+    const useShell = process.platform === 'win32';
+    const ancestorArgs = ['merge-base', '--is-ancestor', 'origin/main', 'HEAD'];
+    execFileSync('git', useShell ? ancestorArgs.map(quoteForShell) : ancestorArgs, {
       cwd: root,
       stdio: 'ignore',
-      shell: process.platform === 'win32',
+      shell: useShell,
     });
   } catch {
     fail('origin/main is not an ancestor of HEAD. Pull or rebase before releasing.');
